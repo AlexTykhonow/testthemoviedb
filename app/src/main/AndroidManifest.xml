@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.Test.themoviedb"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- /Permissions -->
+
+    <application
+        android:name="com.Test.themoviedb.themoviedb"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <!-- Activities
+
+        -->
+        <activity
+            android:name="com.Test.themoviedb.ui.activity.SplashActivity"
+
+
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.Test.themoviedb.ui.activity.HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
+
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".ui.activity.SearchableActivity"/>
+        </activity>
+
+        <activity android:name="com.Test.themoviedb.ui.activity.SearchableActivity"
+                  android:parentActivityName="com.Test.themoviedb.ui.activity.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.Test.themoviedb.ui.activity.HomeActivity" />
+        </activity>
+
+        <activity
+            android:name="com.Test.themoviedb.ui.activity.MovieActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
+        </activity>
+
+
+
+
+
+
+        <!-- /Activities -->
+
+
+        <!-- Services -->
+        <service
+            android:name="com.Test.themoviedb.data.services.lists.TheatersListService"
+            android:exported="false"/>
+
+        <!-- /Services -->
+
+        <!-- Provider -->
+        <provider
+            android:name="com.Test.themoviedb.data.provider.MoviesProvider"
+            android:authorities="com.Test.themoviedb.provider"
+            android:exported="false"/>
+        <!-- /Provider -->
+
+    </application>
+
+</manifest>
